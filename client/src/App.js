@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
 
-
 import Profile from "./component/Profile";
 // import Friends from "./component/Friends";
 import Sports from "./component/Sports";
@@ -18,7 +17,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import SetProfile from "./component/SetProfile";
 import AthleteCV from "./component/AthleteCV";
 
-// import { Container } from "reactstrap";
+import { Container } from "reactstrap";
 
 import { loadUser } from "./actions/authActions";
 import LeagueBoard from "./component/LeagueBoard";
@@ -40,17 +39,25 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <SideMenu />
+        <div className="App" style={{
+                    display: "grid",
+                    gridTemplate: `
+                  "side-menu content" / 50px 1fr
+                `,
+                  }} >
           {/* <Container> */}
-            <Router>
-              <Route
-                exact
-                path="/"
-                render={() => (
-                  <div>
-                    Home HOME HOME
-                    {/* <div id="article-one">
+
+          <SideMenu area="side-menu" />
+          <Router>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <div
+                  
+                >
+                  
+                  {/* <div id="article-one">
                       <Profile />
                       <Friends />
                       <CourtLocations />
@@ -63,16 +70,26 @@ class App extends Component {
                       <ScoreBoardGames />
                       <GameRecords />
                     </div> */}
-                  </div>
-                )}
-              />
+                </div>
+              )}
+            />
 
-              {/* <Route path="/setprofile" component={SetProfile} />
+            {/* <Route path="/setprofile" component={SetProfile} />
 
               <Route path="/athletecv" component={AthleteCV} /> */}
 
-              <Route path="/leitnerbox" component={LeitnerBox}/>
-            </Router>
+            <Route
+              path="/leitnerbox"
+              render={() => (
+                <div
+                  
+                >
+                  {/* <SideMenu area="side-menu" /> */}
+                  <LeitnerBox />
+                </div>
+              )}
+            />
+          </Router>
           {/* </Container> */}
 
           <Footer />
